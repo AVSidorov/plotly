@@ -1,15 +1,16 @@
 var layout = {
     title: 'Generated Surface',
      // scene: {camera: {eye: {x: 10., y: 11., z: 10}}},
-    autosize: false,
-    width: 500,
-    height: 500,
-    margin: {
-        l: 65,
-        r: 50,
-        b: 65,
-        t: 90,
-    }
+    autosize: true,
+    // width: 500,
+    // height: 1080,
+    // margin: {
+    //     l: 65,
+    //     r: 50,
+    //     b: 65,
+    //     t: 90,
+    // }
 };
-Plotly.newPlot('myDiv', data, layout);
-// Plotly.newPlot('myDiv', data);
+var config = {responsive: true}
+Plotly.newPlot('myDiv', data, layout, config);
+//  Plotly.newPlot('myDiv', data);

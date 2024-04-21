@@ -10,16 +10,17 @@
 int main(int argc, char *argv[])
 {
     QJsonArray x,y,z, color;
-    const auto nx = 150;
-    const auto ny = 150;
+    const auto nx = 180;
+    const auto ny = 360;
     for (auto i=0; i<=nx; i++){
         QJsonArray xRow, yRow, zRow, colorRaw;
         auto theta = i*180.f/nx;
         for(auto j=0; j<=ny; j++) {
             auto phi = j*360.f/ny;
 //            auto R = 1.f;
-            auto R = qCos(qDegreesToRadians(theta))>=0 ? qCos(qDegreesToRadians(theta)) : 0;
+            auto R = qCos(qDegreesToRadians(theta));
             R = R*R*R*R*R*R;
+            R = R >= 0 ? R : -R;
             auto r = R*qSin(qDegreesToRadians(theta));
             xRow.push_back(R * r * qCos(qDegreesToRadians(phi)));
             yRow.push_back(R * r * qSin(qDegreesToRadians(phi)));
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
     surface["z"] = z;
     surface["surfacecolor"] = color;
     surface["type"] = "surface";
-    surface["opacity"] = 1;
+    surface["opacity"] = 0.5;
     surface["cmin"] = 0;
     surface["cmax"] = 1;
 
